@@ -216,7 +216,7 @@ export default class Layer extends React.Component<Props> {
     }
 
     if (!map.getLayer(id)) {
-      map.addLayer(layer, before);
+      map.addLayer(layer as MapboxGL.AnyLayer, before);
     }
 
     (Object.entries(eventToHandler) as Array<
@@ -341,7 +341,7 @@ export default class Layer extends React.Component<Props> {
     }
 
     if (Array.isArray(children)) {
-      return (children as JSX.Element[][]).reduce(
+      return (children as unknown as JSX.Element[][]).reduce(
         (arr, next) => arr.concat(next),
         [] as JSX.Element[]
       );

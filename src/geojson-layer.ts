@@ -5,6 +5,7 @@ import diff from './util/diff';
 import { generateID } from './util/uid';
 import { Sources, LayerType } from './util/types';
 import { withMap } from './context';
+import { any } from 'prop-types';
 
 const types = ['symbol', 'line', 'fill', 'fill-extrusion', 'circle'];
 const toCamelCase = (str: string) =>
@@ -152,8 +153,8 @@ export class GeoJSONLayer extends React.Component<Props> {
       {
         id: layerId,
         source: this.id,
-        type,
-        paint,
+        type: type as any,
+        paint: paint as any,
         layout,
         ...layerOptions
       },
@@ -210,7 +211,7 @@ export class GeoJSONLayer extends React.Component<Props> {
 
       if (layers) {
         layers
-          .filter(layer => layer.source === this.id)
+          .filter(layer => (layer as any).source === this.id)
           .forEach(layer => map.removeLayer(layer.id));
       }
 
