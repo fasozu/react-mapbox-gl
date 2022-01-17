@@ -40,7 +40,8 @@ export type Sources =
 
 export type TilesJson = VectorSource | RasterSource;
 
-export type LayerType = 'symbol'
+export type LayerType =
+  | 'symbol'
   | 'custom'
   | 'circle'
   | 'line'
@@ -49,7 +50,7 @@ export type LayerType = 'symbol'
   | 'fill-extrusion'
   | 'raster'
   | 'heatmap'
-  | 'hillshade';  
+  | 'hillshade';
 
 export type AnyShapeCoordinates =
   | number[]
