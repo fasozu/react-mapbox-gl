@@ -98,7 +98,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-test-renderer": "17.0.2",
-    "recompose-build": "github:rifler/recompose#45e0290c32f9dfff008e6614553018ea0451af81",
+    "recompose-build": "github:rifler/recompose",
     "shelljs": "^0.8.5",
     "ts-jest": "24.1.0",
     "tslint": "5.7.0",
