@@ -196,7 +196,14 @@ describe('Layer', () => {
 
   it('Should render Polygon for fill', () => {
     const mockMap = getMapMock();
-    const feature = { coordinates: [[[-123, 45], [123, 45]]] };
+    const feature = {
+      coordinates: [
+        [
+          [-123, 45],
+          [123, 45]
+        ]
+      ]
+    };
     const children = [{ props: feature, type: 'symbol', key: '1' }];
 
     mount(
@@ -220,7 +227,16 @@ describe('Layer', () => {
 
   it('Should render MultiPolygon for fill', () => {
     const mockMap = getMapMock();
-    const feature = { coordinates: [[[[-123, 45], [123, 45]]]] };
+    const feature = {
+      coordinates: [
+        [
+          [
+            [-123, 45],
+            [123, 45]
+          ]
+        ]
+      ]
+    };
     const children = [{ props: feature, type: 'symbol', key: '1' }];
 
     mount(

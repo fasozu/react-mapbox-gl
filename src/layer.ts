@@ -85,7 +85,7 @@ export interface OwnProps {
 export type Props = LayerCommonProps & LayerEvents & OwnProps;
 
 type EventToHandlersType = {
-  [key in keyof MapboxGL.MapLayerEventType]?: keyof LayerEvents
+  [key in keyof MapboxGL.MapLayerEventType]?: keyof LayerEvents;
 };
 
 const eventToHandler: EventToHandlersType = {
@@ -205,8 +205,8 @@ export default class Layer extends React.Component<Props> {
     if (images) {
       const normalizedImages = !Array.isArray(images[0]) ? [images] : images;
       (normalizedImages as ImageDefinitionWithOptions[])
-        .filter(image => !map.hasImage(image[0]))
-        .forEach(image => {
+        .filter((image) => !map.hasImage(image[0]))
+        .forEach((image) => {
           map.addImage(image[0], image[1], image[2]);
         });
     }
@@ -219,9 +219,11 @@ export default class Layer extends React.Component<Props> {
       map.addLayer(layer as MapboxGL.AnyLayer, before);
     }
 
-    (Object.entries(eventToHandler) as Array<
-      [keyof EventToHandlersType, keyof LayerEvents]
-    >).forEach(([event, propName]) => {
+    (
+      Object.entries(eventToHandler) as Array<
+        [keyof EventToHandlersType, keyof LayerEvents]
+      >
+    ).forEach(([event, propName]) => {
       const handler = this.props[propName];
       if (handler) {
         map.on(event, id, handler);
@@ -256,9 +258,11 @@ export default class Layer extends React.Component<Props> {
 
     map.off('styledata', this.onStyleDataChange);
 
-    (Object.entries(eventToHandler) as Array<
-      [keyof EventToHandlersType, keyof LayerEvents]
-    >).forEach(([event, propName]) => {
+    (
+      Object.entries(eventToHandler) as Array<
+        [keyof EventToHandlersType, keyof LayerEvents]
+      >
+    ).forEach(([event, propName]) => {
       const handler = this.props[propName];
       if (handler) {
         map.off(event, id, handler);
@@ -289,7 +293,7 @@ export default class Layer extends React.Component<Props> {
     if (!isEqual(props.paint, paint)) {
       const paintDiff = diff(paint, props.paint);
 
-      Object.keys(paintDiff).forEach(key => {
+      Object.keys(paintDiff).forEach((key) => {
         map.setPaintProperty(id, key, paintDiff[key]);
       });
     }
@@ -297,7 +301,7 @@ export default class Layer extends React.Component<Props> {
     if (!isEqual(props.layout, layout)) {
       const layoutDiff = diff(layout, props.layout);
 
-      Object.keys(layoutDiff).forEach(key => {
+      Object.keys(layoutDiff).forEach((key) => {
         map.setLayoutProperty(id, key, layoutDiff[key]);
       });
     }
@@ -315,9 +319,11 @@ export default class Layer extends React.Component<Props> {
       map.setLayerZoomRange(id, props.minZoom!, props.maxZoom!);
     }
 
-    (Object.entries(eventToHandler) as Array<
-      [keyof EventToHandlersType, keyof LayerEvents]
-    >).forEach(([event, propName]) => {
+    (
+      Object.entries(eventToHandler) as Array<
+        [keyof EventToHandlersType, keyof LayerEvents]
+      >
+    ).forEach(([event, propName]) => {
       const oldHandler = this.props[propName];
       const newHandler = props[propName];
 
@@ -341,7 +347,7 @@ export default class Layer extends React.Component<Props> {
     }
 
     if (Array.isArray(children)) {
-      return ((children as unknown) as JSX.Element[][]).reduce(
+      return (children as unknown as JSX.Element[][]).reduce(
         (arr, next) => arr.concat(next),
         [] as JSX.Element[]
       );
@@ -356,8 +362,8 @@ export default class Layer extends React.Component<Props> {
     let children = this.getChildren();
 
     if (draggedChildren) {
-      const draggableChildrenIds = draggedChildren.map(child => child.key);
-      children = children.map(child => {
+      const draggableChildrenIds = draggedChildren.map((child) => child.key);
+      children = children.map((child) => {
         const indexChildren = draggableChildrenIds.indexOf(child.key);
         if (indexChildren !== -1) {
           return draggedChildren[indexChildren];
