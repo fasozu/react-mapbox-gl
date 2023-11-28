@@ -74,7 +74,7 @@
     "mapbox-gl": "^2.7.19",
     "prop-types": "^15.6.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.17"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/core-js": "2.5.8",
@@ -87,7 +87,7 @@
     "@types/prettier": "2.7.3",
     "@types/prop-types": "15.7.11",
     "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.17",
+    "@types/react-dom": "^18.2.0",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.8.0",
     "enzyme": "3.11.0",
     "husky": "^8.0.3",
