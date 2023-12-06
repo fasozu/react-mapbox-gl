@@ -146,8 +146,7 @@ export const updateEvents = (
 
   const toListenOn = Object.keys(events)
     .filter((key) => !listeners[key] && typeof nextProps[key] === 'function')
-    .reduce((acc, next) => ((acc[next] = events[next]), acc), {});
-
+    .reduce((acc, next) => ((acc[next] = events[next]), acc), {}); // tslint:disable-line
   const newListeners = listenEvents(toListenOn, nextProps, map);
 
   return { ...listeners, ...newListeners };

@@ -5,7 +5,6 @@ import diff from './util/diff';
 import { generateID } from './util/uid';
 import { Sources, LayerType } from './util/types';
 import { withMap } from './context';
-import { any } from 'prop-types';
 
 const types = ['symbol', 'line', 'fill', 'fill-extrusion', 'circle'];
 const toCamelCase = (str: string) =>
