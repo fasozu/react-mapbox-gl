@@ -117,7 +117,7 @@ export class ScaleControl extends React.Component<Props, State> {
       measurement
     );
 
-    const relativeWidth = (totalWidth / clientWidth) * MIN_WIDTH_SCALE;
+    const relativeWidth = totalWidth / clientWidth * MIN_WIDTH_SCALE;
 
     const chosenScale = scales.reduce((acc, curr) => {
       if (!acc && curr > relativeWidth) {
@@ -128,7 +128,7 @@ export class ScaleControl extends React.Component<Props, State> {
     }, 0);
 
     // tslint:disable-next-line:no-any
-    const scaleWidth = (chosenScale / totalWidth) * clientWidth;
+    const scaleWidth = chosenScale / totalWidth * clientWidth;
 
     this.setState({
       chosenScale,

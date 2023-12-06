@@ -3,10 +3,7 @@ import ReactMapboxGl, { Marker, Cluster, Popup } from '../../../';
 import styled from 'styled-components';
 
 // tslint:disable-next-line:no-var-requires
-const {
-  token,
-  styles: { outdoor }
-} = require('./config.json');
+const { token, styles: { outdoor } } = require('./config.json');
 // tslint:disable-next-line:no-var-requires
 const falls = require('./falls.json');
 

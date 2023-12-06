@@ -89,9 +89,9 @@ export class Source extends React.Component<Props> {
           const { id: before } = layers[idx + 1] || { id: undefined };
           return { ...layer, before };
         })
-        .filter((layer) => (layer as any).source === this.id);
+        .filter(layer => (layer as any).source === this.id);
 
-      layers.forEach((layer) => map.removeLayer(layer.id));
+      layers.forEach(layer => map.removeLayer(layer.id));
 
       map.removeSource(this.id);
 
@@ -128,9 +128,7 @@ export class Source extends React.Component<Props> {
         const layers = this.removeSource();
         map.addSource(this.id, props.tileJsonSource);
 
-        layers.forEach((layer) =>
-          map.addLayer(layer as AnyLayer, layer.before)
-        );
+        layers.forEach(layer => map.addLayer(layer as AnyLayer, layer.before));
       }
     }
 

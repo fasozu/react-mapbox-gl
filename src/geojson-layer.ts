@@ -9,8 +9,10 @@ import { withMap } from './context';
 const types = ['symbol', 'line', 'fill', 'fill-extrusion', 'circle'];
 const toCamelCase = (str: string) =>
   str
-    .replace(/(?:^\w|[A-Z]|\b\w)/g, (letter, index) =>
-      index === 0 ? letter.toLowerCase() : letter.toUpperCase()
+    .replace(
+      /(?:^\w|[A-Z]|\b\w)/g,
+      (letter, index) =>
+        index === 0 ? letter.toLowerCase() : letter.toUpperCase()
     )
     .replace(/[\s+]|-/g, '');
 
@@ -168,7 +170,7 @@ export class GeoJSONLayer extends React.Component<Props> {
 
     const events = Object.keys(eventToHandler) as MapboxEventTypes;
 
-    events.forEach((event) => {
+    events.forEach(event => {
       const handler =
         this.props[`${toCamelCase(type)}${eventToHandler[event]}`] || null;
 
@@ -208,16 +210,16 @@ export class GeoJSONLayer extends React.Component<Props> {
 
       if (layers) {
         layers
-          .filter((layer) => (layer as any).source === this.id)
-          .forEach((layer) => map.removeLayer(layer.id));
+          .filter(layer => (layer as any).source === this.id)
+          .forEach(layer => map.removeLayer(layer.id));
       }
 
       map.removeSource(this.id);
     }
 
-    types.forEach((type) => {
+    types.forEach(type => {
       const events = Object.keys(eventToHandler) as MapboxEventTypes;
-      events.forEach((event) => {
+      events.forEach(event => {
         const prop = toCamelCase(type) + eventToHandler[event];
 
         if (this.props[prop]) {
@@ -226,7 +228,7 @@ export class GeoJSONLayer extends React.Component<Props> {
       });
     });
 
-    this.layerIds.forEach((lId) => {
+    this.layerIds.forEach(lId => {
       if (map.getLayer(lId)) {
         map.removeLayer(lId);
       }
@@ -280,7 +282,7 @@ export class GeoJSONLayer extends React.Component<Props> {
       layerOptions &&
       !isEqual(props.layerOptions.filter, layerOptions.filter);
 
-    types.forEach((type) => {
+    types.forEach(type => {
       const layerId = this.buildLayerId(type);
 
       if (props.layerOptions && layerFilterChanged) {
@@ -292,7 +294,7 @@ export class GeoJSONLayer extends React.Component<Props> {
       if (!isEqual(props[paintProp], this.props[paintProp])) {
         const paintDiff = diff(this.props[paintProp], props[paintProp]);
 
-        Object.keys(paintDiff).forEach((key) => {
+        Object.keys(paintDiff).forEach(key => {
           map.setPaintProperty(layerId, key, paintDiff[key]);
         });
       }
@@ -302,14 +304,14 @@ export class GeoJSONLayer extends React.Component<Props> {
       if (!isEqual(props[layoutProp], this.props[layoutProp])) {
         const layoutDiff = diff(this.props[layoutProp], props[layoutProp]);
 
-        Object.keys(layoutDiff).forEach((key) => {
+        Object.keys(layoutDiff).forEach(key => {
           map.setLayoutProperty(layerId, key, layoutDiff[key]);
         });
       }
 
       const events = Object.keys(eventToHandler) as MapboxEventTypes;
 
-      events.forEach((event) => {
+      events.forEach(event => {
         const prop = toCamelCase(type) + eventToHandler[event];
 
         if (props[prop] !== this.props[prop]) {
