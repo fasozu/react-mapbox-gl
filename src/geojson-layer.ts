@@ -104,8 +104,6 @@ export interface Props
   map: MapboxGL.Map;
 }
 
-// type MapboxEventTypes = Array<keyof MapboxGL.MapLayerEventType>;
-
 type MapboxEventTypes = Array<
   | 'click'
   | 'dblclick'

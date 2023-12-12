@@ -70,9 +70,7 @@ class Image extends React.Component<Props> {
             return;
           }
 
-          // Assuming ImageDataType is the desired type, cast image to ImageDataType
           const imageData: ImageDataType = image as ImageDataType;
-
           map.addImage(id, imageData, options);
           this.loaded();
         }
