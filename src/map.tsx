@@ -354,7 +354,7 @@ const ReactMapboxFactory = ({
         const mm: string = nextProps.movingMethod || defaultMovingMethod;
         const { flyToOptions, animationOptions } = nextProps;
 
-        map[mm]({
+        (map as any)[mm]({
           ...animationOptions,
           ...flyToOptions,
           zoom: didZoomUpdate && nextProps.zoom ? nextProps.zoom[0] : zoom,

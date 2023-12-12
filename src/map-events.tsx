@@ -110,7 +110,7 @@ export const listenEvents = (
 ) =>
   Object.keys(partialEvents).reduce(
     (listeners, event) => {
-      const propEvent = props[event];
+      const propEvent = (props as any)[event];
 
       if (propEvent) {
         // tslint:disable-next-line:no-any
@@ -118,9 +118,9 @@ export const listenEvents = (
           propEvent(map, evt);
         };
 
-        map.on(partialEvents[event], listener);
+        map.on((partialEvents as any)[event], listener);
 
-        listeners[event] = listener;
+        (listeners as any)[event] = listener;
       }
 
       return listeners;
@@ -136,17 +136,25 @@ export const updateEvents = (
 ) => {
   const toListenOff = Object.keys(events).filter(
     (eventKey) =>
-      listeners[eventKey] && typeof nextProps[eventKey] !== 'function'
+      (listeners as any)[eventKey] &&
+      typeof (nextProps as any)[eventKey] !== 'function'
   );
 
   toListenOff.forEach((key) => {
-    map.off(events[key], listeners[key]);
-    delete listeners[key];
+    map.off((events as any)[key], (listeners as any)[key]);
+    delete (listeners as any)[key];
   });
 
   const toListenOn = Object.keys(events)
-    .filter((key) => !listeners[key] && typeof nextProps[key] === 'function')
-    .reduce((acc, next) => ((acc[next] = events[next]), acc), {}); // tslint:disable-line
+    .filter(
+      (key) =>
+        !(listeners as any)[key] &&
+        typeof (nextProps as any)[key] === 'function'
+    )
+    .reduce(
+      (acc, next) => (((acc as any)[next] = (events as any)[next]), acc),
+      {}
+    ); // tslint:disable-line
   const newListeners = listenEvents(toListenOn, nextProps, map);
 
   return { ...listeners, ...newListeners };
