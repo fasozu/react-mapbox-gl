@@ -73,7 +73,7 @@ export class Source extends React.Component<Props> {
     }
     // Will fix datasource being empty
     if (source && this.props.geoJsonSource && this.props.geoJsonSource.data) {
-      source.setData(this.props.geoJsonSource.data);
+      source.setData(this.props.geoJsonSource.data as any);
     }
     map.off('sourcedata', this.onData);
   };
@@ -143,7 +143,7 @@ export class Source extends React.Component<Props> {
       map.getSource(this.id)
     ) {
       const source = map.getSource(this.id) as GeoJSONSource;
-      source.setData(props.geoJsonSource.data);
+      source.setData(props.geoJsonSource.data as any);
     }
   }
 

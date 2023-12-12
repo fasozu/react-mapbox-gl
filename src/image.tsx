@@ -57,17 +57,24 @@ class Image extends React.Component<Props> {
       map.addImage(id, data, options);
       this.loaded();
     } else if (url) {
-      map.loadImage(url, (error: Error | undefined, image: ImageDataType) => {
-        if (error) {
-          if (onError) {
-            onError(error);
+      map.loadImage(
+        url,
+        (
+          error: Error | undefined,
+          image: HTMLImageElement | ImageBitmap | undefined
+        ) => {
+          if (error) {
+            if (onError) {
+              onError(error);
+            }
+            return;
           }
 
-          return;
+          const imageData: ImageDataType = image as ImageDataType;
+          map.addImage(id, imageData, options);
+          this.loaded();
         }
-        map.addImage(id, image, options);
-        this.loaded();
-      });
+      );
     }
   }
 

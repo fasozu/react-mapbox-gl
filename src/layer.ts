@@ -294,7 +294,7 @@ export default class Layer extends React.Component<Props> {
       const paintDiff = diff(paint, props.paint);
 
       Object.keys(paintDiff).forEach((key) => {
-        map.setPaintProperty(id, key, paintDiff[key]);
+        map.setPaintProperty(id, key, (paintDiff as any)[key]);
       });
     }
 
@@ -302,7 +302,7 @@ export default class Layer extends React.Component<Props> {
       const layoutDiff = diff(layout, props.layout);
 
       Object.keys(layoutDiff).forEach((key) => {
-        map.setLayoutProperty(id, key, layoutDiff[key]);
+        map.setLayoutProperty(id, key, (layoutDiff as any)[key]);
       });
     }
 

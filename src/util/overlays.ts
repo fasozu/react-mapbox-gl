@@ -150,14 +150,17 @@ export const overlayTransform = ({
   const res = [];
 
   if (position) {
+    // @ts-ignore
     res.push(moveTranslate(position));
   }
 
   if (offset && offset.x !== undefined && offset.y !== undefined) {
+    // @ts-ignore
     res.push(moveTranslate(offset));
   }
 
   if (anchor) {
+    // @ts-ignore
     res.push(anchorTranslates[anchor]);
   }
 
